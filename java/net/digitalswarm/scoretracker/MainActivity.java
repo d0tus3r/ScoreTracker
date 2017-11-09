@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     /**
      * Displays the given score for Team A and B.
      */
