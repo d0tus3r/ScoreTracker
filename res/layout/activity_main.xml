@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/Views"
     android:orientation="vertical">
     <View
         android:layout_width="1dp"
@@ -19,8 +20,9 @@
             android:id="@+id/timer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:padding="16dp"
             android:gravity="center"
+            style="@style/Timer"
             android:text="45:00:00"
             android:textSize="36sp" />
 
@@ -41,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="4dp"
+                    style="@style/TeamName"
                     android:text="Team A" />
 
                 <!-- rather than change each score text view, alter styles.xml later-->
@@ -48,6 +51,7 @@
                     android:id="@+id/team_a_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/TeamName"
                     android:gravity="center"
                     android:padding="4dp"
                     android:text="2"
@@ -60,6 +64,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -93,6 +98,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                style="@style/TeamName"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -147,7 +153,9 @@
                 android:layout_height="48dp"
                 android:layout_margin="16dp"
                 android:gravity="center"
-                android:text="RED"
+                style="@style/RedCard"
+                android:textStyle="bold"
+                android:text="0"
                 android:textSize="10dp" />
 
             <TextView
@@ -155,8 +163,10 @@
                 android:layout_width="64dp"
                 android:layout_height="48dp"
                 android:layout_margin="16dp"
+                android:textStyle="bold"
                 android:gravity="center"
-                android:text="YELLOW"
+                android:text="0"
+                style="@style/YellowCard"
                 android:textSize="10dp" />
 
             <TextView
@@ -165,7 +175,8 @@
                 android:layout_height="48dp"
                 android:layout_margin="16dp"
                 android:gravity="center"
-                android:text="RED"
+                style="@style/RedCard"
+                android:text=""
                 android:textSize="10dp" />
 
             <TextView
@@ -174,7 +185,8 @@
                 android:layout_height="48dp"
                 android:layout_margin="16dp"
                 android:gravity="center"
-                android:text="YELLOW"
+                style="@style/YellowCard"
+                android:text=""
                 android:textSize="10dp" />
 
         </LinearLayout>
