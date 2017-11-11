@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TeamName"
+                    style="@style/TeamNameA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -50,7 +50,7 @@
                 <!-- rather than change each score text view, alter styles.xml later-->
                 <TextView
                     android:id="@+id/team_a_score"
-                    style="@style/TeamName"
+                    style="@style/TeamNameA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -70,6 +70,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/TeamNameB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -78,12 +79,12 @@
 
                 <TextView
                     android:id="@+id/team_b_score"
+                    style="@style/TeamNameB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="4dp"
                     android:text="1"
-                    android:textColor="@android:color/black"
                     android:textSize="112sp"
                     android:textStyle="bold" />
 
@@ -97,7 +98,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                style="@style/TeamName"
+                style="@style/TeamNameA"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -114,10 +115,12 @@
                     android:id="@+id/team_a_goal_time_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
                     android:text="+1 11:42:56" />
             </LinearLayout>
 
             <LinearLayout
+                style="@style/TeamNameB"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -128,12 +131,14 @@
                     android:id="@+id/team_b_goal_time_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/TeamNameB"
                     android:text="+1 03:17:32" />
 
                 <TextView
                     android:id="@+id/team_b_goal_time_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/TeamNameB"
                     android:text="+1 11:42:56" />
             </LinearLayout>
 
