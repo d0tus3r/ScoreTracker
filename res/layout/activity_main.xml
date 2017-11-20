@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+<!--TODO: clean up styling / condense to style.xml / improve colors / make team name + color selectable with predefined options
+    TODO: add another layout around the red / yellow cards on both teams and give a neutral color so no team background color interference
+    TODO: add a layout for landscape mode / force portrait if needed-->
     <View
         android:layout_width="1dp"
         android:layout_height="300dp"
@@ -40,15 +42,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TeamNameA"
                     android:id="@+id/team_a_name"
+                    style="@style/TeamNameA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="4dp"
                     android:text="Team A" />
 
-                <!-- rather than change each score text view, alter styles.xml later-->
                 <TextView
                     android:id="@+id/team_a_score"
                     style="@style/TeamNameA"
@@ -71,8 +72,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TeamNameB"
                     android:id="@+id/team_b_name"
+                    style="@style/TeamNameB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -109,16 +110,13 @@
 
                 <TextView
                     android:id="@+id/team_a_goal_time_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+1 03:17:32" />
+                    style="@style/TeamALastGoals"
+                    android:text="+1       03:17" />
 
                 <TextView
                     android:id="@+id/team_a_goal_time_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
-                    android:text="+1 11:42:56" />
+                    style="@style/TeamALastGoals"
+                    android:text="+1       11:42" />
             </LinearLayout>
 
             <LinearLayout
@@ -131,17 +129,13 @@
 
                 <TextView
                     android:id="@+id/team_b_goal_time_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TeamNameB"
-                    android:text="+1 03:17:32" />
+                    style="@style/TeamBLastGoals"
+                    android:text="+1       03:17" />
 
                 <TextView
                     android:id="@+id/team_b_goal_time_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TeamNameB"
-                    android:text="+1 11:42:56" />
+                    style="@style/TeamBLastGoals"
+                    android:text="+1       03:17" />
             </LinearLayout>
 
 

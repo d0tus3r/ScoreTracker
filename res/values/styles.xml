@@ -36,4 +36,18 @@
         <item name="android:background">#8e0000</item>
         <item name="android:textColor">#ffffff</item>
     </style>
+    <style name="TeamALastGoals">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+    <style name="TeamBLastGoals">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:background">#8e0000</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
 </resources>

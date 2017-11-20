@@ -10,10 +10,15 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * Global Variables for Team Score
+     * Global Variables
+     * TODO: Maybe add a is2ndHalf boolean for later use in goal scored time calculation and display
      */
     int teamAScore = 0;
     int teamBScore = 0;
+    long teamALastScore1;
+    long teamALastScore2;
+    long teamBLastScore1;
+    long teamBLastScore2;
     int teamARedCards = 0;
     int teamAYellowCards = 0;
     int teamBRedCards = 0;
@@ -34,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         final TextView timerView = (TextView) findViewById(R.id.timer);
         /**
          * Timer Functionality
+         * TODO: maybe clean this up so that there's no visible delay when resuming. // Maybe show milliseconds rounded to 100ths?
+         * TODO: maybe onLongClick allow for custom time settings if not here, then dropdown options menu
          */
         timerView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -71,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
          * create a way to interact with the textView teamAView(@id/team_a_score)
          * Creates 2 click listeners, adds a point to score when pressed quickly
          * removes a point from score when held
+         * also handles the storing and displaying the last 2 scores
+         * TODO: finish setting up onLongClick for score times and B team
+         * TODO: Make last score time displayed as TotalTime(half+half) - timeRemaining
          */
         TextView teamAView = (findViewById(R.id.team_a_score));
         teamAView.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +88,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 teamAScore++;
                 displayForTeamAScore(teamAScore);
+                if(teamAScore < 2){
+                    teamALastScore1 = timeRemaining;
+                    displayForTeamALast1(teamALastScore1);
+                }
+                if(teamAScore == 2){
+                    teamALastScore2 = teamALastScore1;
+                    teamALastScore1 = timeRemaining;
+                    displayForTeamALast1(teamALastScore1);
+                    displayForTeamALast2(teamALastScore2);
+                }
+                if(teamAScore > 2){
+                    teamALastScore2 = teamALastScore1;
+                    teamALastScore1 = timeRemaining;
+                    displayForTeamALast1(teamALastScore1);
+                    displayForTeamALast2(teamALastScore2);
+                }
             }
         });
         teamAView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -108,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
         /**
          * on click listeners for the fouls
          * quick press = ++ / long press = --
-         * future goal: add the ability to enter player number after press to log 
-         * player specific foul counts in addition to total team fouls
+         * TODO: future goal: add the ability to enter player number after press to log player specific foul counts in addition to total team fouls
+         * TODO: Future Goal: long press on Team Red&Yellow cards would bring up small card with player fouls
          */
         TextView teamARedCard = (findViewById(R.id.team_a_red));
         teamARedCard.setOnClickListener(new View.OnClickListener() {
@@ -222,7 +248,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * update display for last 2 scores team A + B
+     */
+    public void displayForTeamALast1(long lastScore){
+        TextView teamALast1 = findViewById(R.id.team_a_goal_time_1);
+        teamALast1.setText("+1       " + String.format("%02d:%02d", ((lastScore / 1000)/60), (lastScore / 1000)%60));
+    }
+
+    public void displayForTeamALast2(long lastScore){
+        TextView teamALast2 = findViewById(R.id.team_a_goal_time_2);
+        teamALast2.setText("+1       " + String.format("%02d:%02d", ((lastScore / 1000)/60), (lastScore / 1000)%60));
+    }
+
+    public void displayForTeamBLast1(int lastScore){
+        TextView teamBLast1 = findViewById(R.id.team_b_goal_time_1);
+        teamBLast1.setText("+1       " + String.format("%02d:%02d", ((lastScore / 1000)/60), (lastScore / 1000)%60));
+    }
+
+    public void displayForTeamBLast2(int lastScore){
+        TextView teamBLast2 = findViewById(R.id.team_b_goal_time_2);
+        teamBLast2.setText("+1       " + String.format("%02d:%02d", ((lastScore / 1000)/60), (lastScore / 1000)%60));
+    }
+
+    /**
      * Resets the scores && time
+     * TODO: Move this to a drop down option menu / no need for screen space used
      */
     public void resetScore(View view){
         teamAScore = 0;
@@ -238,6 +288,9 @@ public class MainActivity extends AppCompatActivity {
         displayForTeamBRed(teamBRedCards);
         displayForTeamBYellow(teamBYellowCards);
     }
+    /**
+     * TODO: Future Goal / banner ad on bottom
+     */
 
 
 
