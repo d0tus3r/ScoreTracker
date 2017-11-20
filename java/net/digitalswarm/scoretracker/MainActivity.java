@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,9 +18,12 @@ public class MainActivity extends AppCompatActivity {
     int teamAYellowCards = 0;
     int teamBRedCards = 0;
     int teamBYellowCards = 0;
-    int countTimer = 2700;
-    boolean pauseTimer = false;
-    public TextView timerView = (TextView) findViewById(R.id.timer);
+    long timeRemaining = 2700000;
+    boolean isPaused = true;
+    boolean isRunning = false;
+    public CountDownTimer cdTimer;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,41 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         displayForTeamAScore(teamAScore);
         displayForTeamBScore(teamBScore);
-        
+        final TextView timerView = (TextView) findViewById(R.id.timer);
+        /**
+         * Timer Functionality
+         */
+        timerView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(!isRunning) {
+                    cdTimer = new CountDownTimer(timeRemaining, 1000) {
+                        @Override
+                        public void onTick(long millisTilFinished) {
+                            if (isPaused) {
+                                cancel();
+                            } else {
+                                timerView.setText(String.format("%02d:%02d", ((timeRemaining / 1000)/60), (timeRemaining / 1000)%60));
+                                timeRemaining = millisTilFinished;
+                            }
+                        }
 
-        timer();
+                        @Override
+                        public void onFinish() {
+                            timerView.setText("0:00");
+                        }
+                    }.start();
+                    isPaused = false;
+                    isRunning = true;
+                } else {
+                    isPaused = true;
+                    isRunning = false;
+                    cdTimer.cancel();
+                }
+
+            }
+        });
+
 
         /**
          * create a way to interact with the textView teamAView(@id/team_a_score)
@@ -149,41 +182,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    public void timer(){
-        Timer timer = new Timer();
-        timerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(pauseTimer){
-                    pauseTimer = false;
-                }
-                if(!pauseTimer){
-                    pauseTimer = true;
-
-                }
-            }
-        });
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String s_time = String.format("%02d:%02d", (countTimer % 3600) / 60, countTimer % 60);
-                        timerView.setText(s_time);
-                        if (!pauseTimer) countTimer--;
-                    }
-                });
-            }
-        }, 1000, 1000);
-    }
-/**
-    public void displayForTimer(String time){
-        TextView timerView = findViewById(R.id.timer);
-        timerView.setText(time);
-    }
-*/
 
     /**
      * Displays the given score for Team A and B.
